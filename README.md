@@ -19,6 +19,7 @@ This project is a RESTful API for a To-Do List application. It fulfills all core
 - **MySQL2 & Connection Pool**: We use `mysql2/promise` with connection pooling to safely handle queries and automatically create the database and task table on launch (so you don't have to manually run SQL commands).
 - **Testing**: Using `jest` and `supertest` with mocked database models so the test suite can run instantly without requiring a live, configured database connection.
 - **Configurability**: We use a `.env` file for credentials to keep the repository clean and flexible.
+- **Frontend UI**: Added a simple, aesthetic single-page client served at `/` to easily interact with the API without needing Postman.
 
 ## How to Run
 
