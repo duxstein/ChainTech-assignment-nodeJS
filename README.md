@@ -99,6 +99,25 @@ You can now use the fully functional To-Do List Application to create, view, edi
 
 ---
 
+## 📸 Screenshots & Usage Guide
+
+### Main Application Dashboard
+*(Place your screenshot showing the app below)*
+![Application Dashboard](<img width="1920" height="928" alt="Image" src="https://github.com/user-attachments/assets/ddd7bed0-31f9-4b11-a67f-b040be242147" />)
+
+### How to Create a Task
+*(Place your screenshot of the task creation form below)*
+![Creating a Task](./screenshots/create-task.png)
+
+To create a new task, follow these steps in the UI:
+1. Add your title here
+2. Add the description of the task here
+3. Add the date on which it is going to be done
+4. Select a category for the task 
+5. Click on the add task button
+
+---
+
 ## 🧪 Running Unit Tests (Bonus Requirement)
 
 To verify the logic and requirements via the automated test suite, simply use:
