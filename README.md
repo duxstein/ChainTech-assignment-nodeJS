@@ -103,7 +103,7 @@ You can now use the fully functional To-Do List Application to create, view, edi
 
 ### Main Application Dashboard
 *(Place your screenshot showing the app below)*
-![Application Dashboard](https://github.com/user-attachments/assets/ddd7bed0-31f9-4b11-a67f-b040be242147)
+![Application Dashboard](<img width="1920" height="928" alt="Image" src="https://github.com/user-attachments/assets/ddd7bed0-31f9-4b11-a67f-b040be242147" />)
 
 ### How to Create a Task
 *(Place your screenshot of the task creation form below)*
