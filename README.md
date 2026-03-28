@@ -102,7 +102,7 @@ You can now use the fully functional To-Do List Application to create, view, edi
 ## 📸 Screenshots & Usage Guide
 
 ### Main Application Dashboard
-![image alt]{https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/4e72dc2125d504d7e927f12563fd6eb808a5f153/screenshots/dashboard.png}
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/4e72dc2125d504d7e927f12563fd6eb808a5f153/screenshots/dashboard.png)
 
 ### How to Create a Task
 *(Place your screenshot of the task creation form below)*
