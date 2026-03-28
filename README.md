@@ -102,18 +102,21 @@ You can now use the fully functional To-Do List Application to create, view, edi
 ## 📸 Screenshots & Usage Guide
 
 ### Main Application Dashboard
-![image alt]{https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/4e72dc2125d504d7e927f12563fd6eb808a5f153/screenshots/dashboard.png}
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/4e72dc2125d504d7e927f12563fd6eb808a5f153/screenshots/dashboard.png)
 
 ### How to Create a Task
-*(Place your screenshot of the task creation form below)*
-![Creating a Task](./screenshots/create-task.png)
 
 To create a new task, follow these steps in the UI:
 1. Add your title here
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/c0b5cbe1b22c4ec4c1bc656eda94560e9eb30cf3/screenshots/creating-a-task-title.png)
 2. Add the description of the task here
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/c0b5cbe1b22c4ec4c1bc656eda94560e9eb30cf3/screenshots/creating-a-task-desciption.png)
 3. Add the date on which it is going to be done
-4. Select a category for the task 
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/c0b5cbe1b22c4ec4c1bc656eda94560e9eb30cf3/screenshots/assigning-a-date.png)
+4. Select a category for the task from the dropdown
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/c0b5cbe1b22c4ec4c1bc656eda94560e9eb30cf3/screenshots/selecting-a-category.png)
 5. Click on the add task button
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/c0b5cbe1b22c4ec4c1bc656eda94560e9eb30cf3/screenshots/creating-a-task-title.png)
 
 ---
 
