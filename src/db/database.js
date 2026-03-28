@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 
 const initDatabase = async () => {
   try {
-    // Create the database if it doesn't exist
+    // Create the database if nott exist
     const tempConnection = await mysql.createConnection({
       host: process.env.DB_HOST || 'localhost',
       user: process.env.DB_USER || 'root',

@@ -66,14 +66,14 @@ form.addEventListener('submit', async (e) => {
     try {
         let res;
         if (id) {
-            // Update
+            // Update task
             res = await fetch(`${API_URL}/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
         } else {
-            // Create
+            // Create task
             res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -150,5 +150,5 @@ function escapeHtml(unsafe) {
          .replace(/'/g, "&#039;");
 }
 
-// Initial fetch
+
 fetchTasks();

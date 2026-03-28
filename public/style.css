@@ -109,7 +109,7 @@ button:hover {
     background-color: var(--accent-hover);
 }
 
-/* Task List Styles */
+
 .task-list {
     display: flex;
     flex-direction: column;

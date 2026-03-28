@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const taskController = require('../controllers/taskController');
 
-// Route parameters:
+
 // POST /tasks - Create a new task
 router.post('/', taskController.createTask);
 
