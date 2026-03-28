@@ -1,66 +1,115 @@
-# Chaintech Node.js Intern Assignment - To-Do List API
+# To-Do List Application
 
-This project is a RESTful API for a To-Do List application. It fulfills all core requirements and includes all bonus features specified in the assignment.
+A comprehensive Node.js and Express RESTful API for managing tasks, complete with a clean single-page frontend interface. This project was developed as an intern assignment and explicitly fulfills all core and bonus requirements.
 
-## Features & Requirements Addressed
+---
 
-### Core Functionality 
-- **Task Management**: Create, read (list), update, and delete tasks.
-- **Persistence**: Data is saved to a **MySQL** database (`todo_app` by default). The app auto-creates the table on boot.
-- **Validation**: Ensures task titles are never empty, and prevents a task from being marked as completed if it already is. Graceful API error messages.
+## 🚀 Features & Assignment Requirements Met
 
-### Bonus Features
-- **Due Dates & Categories**: Tasks support optional `dueDate` and `category` fields when created or updated.
-- **Unit Tests**: Full suite of unit tests for controller logic and routes.
+### 1. Task Management (Core Requirement)
+- **Create**: Add tasks with a title and description.
+- **Read**: View a list of all existing tasks.
+- **Update**: Edit task details, including marking a task as completed.
+- **Delete**: Safely remove tasks from the system.
 
-## Code Structure / Key Decisions
+### 2. Data Persistence (Core Requirement)
+- **Database**: Uses **MySQL** as the persistent storage layer via the `mysql2/promise` package.
+- **Automation**: The application connects to MySQL and automatically executes `CREATE DATABASE` and `CREATE TABLE` upon server startup. No manual SQL scripts are required!
 
-- **Express & MVC Architecture**: Divided into `models/`, `controllers/`, and `routes/`. Connects business logic layer separated from HTTP layer.
-- **MySQL2 & Connection Pool**: We use `mysql2/promise` with connection pooling to safely handle queries and automatically create the database and task table on launch (so you don't have to manually run SQL commands).
-- **Testing**: Using `jest` and `supertest` with mocked database models so the test suite can run instantly without requiring a live, configured database connection.
-- **Configurability**: We use a `.env` file for credentials to keep the repository clean and flexible.
-- **Frontend UI**: Added a simple, aesthetic single-page client served at `/` to easily interact with the API without needing Postman.
+### 3. Validation & Error Handling (Core Requirement)
+- **Input Validation**: API rejects task creation or updates if the `title` is empty or missing.
+- **Business Logic Rules**: Attempting to mark an already completed task as complete results in a `400 Bad Request` with a meaningful error message.
+- **Graceful Error Handling**: All database crashes, not-found IDs (404), and server errors yield standardized JSON error structures instead of terminating the app or returning raw stack traces.
 
-## How to Run
+### 4. Setup Options (Bonus Features Included)
+- **Due Dates & Categories**: Tasks support optional `dueDate` and `category` fields globally across DB, API, and the GUI.
+- **Unit Testing**: Contains a robust automated test suite built with **Jest** and **Supertest** ensuring all logic behaves as expected.
+
+---
+
+## 🛠️ Code Structure & Key Decisions
+
+The project is structured using a modular **MVC (Model-View-Controller)** approach to separate concerns and ensure maintainability:
+
+```text
+├── public/                 # Simple Frontend UI files (HTML, CSS, JS)
+├── src/                    
+│   ├── app.js              # Express app setup, isolated from the network port for easier testing
+│   ├── server.js           # Network entry point and database startup trigger
+│   ├── controllers/        # Request/Response logic and input validation (`taskController.js`)
+│   ├── models/             # Direct database interactions and raw queries (`taskModel.js`)
+│   ├── routes/             # API Endpoint definitions (`taskRoutes.js`)
+│   └── db/                 # Connection pooling and database bootstrap logic (`database.js`)
+├── tests/                  # Automated integration/unit tests using mocked endpoints
+├── .env                    # Environment variables (credentials)
+└── package.json            # Project dependencies and bash scripts
+```
+
+**Key Architectural Decisions:**
+1. **Connection Pooling (`mysql2`)**: Ensures we can handle multiple API requests simultaneously without locking up the database connection.
+2. **Separation of API vs. Server (`app.js` vs `server.js`)**: Decoupling the Express `app` from the `listen()` call enables us to test endpoints securely using Supertest without opening real background TCP ports.
+3. **Mocked Test Database**: The unit tests use `jest.mock()` for the Task model. This ensures the tests validate purely the routing, business logic, and request validation without heavily relying on your local environment's live MySQL instance running perfectly.
+4. **Simple Integrated Client UI**: Rather than forcing testing exclusively through Postman or Curl, a vanilla JS frontend sits in `public/` and interacts seamlessly with the API.
+
+---
+
+## 💻 Setup & Installation Instructions
 
 ### Prerequisites
-- Node.js installed
-- MySQL Server installed and running locally
+- Node.js (v14 or higher)
+- **MySQL Server** installed and running locally.
 
-### 1. Installation
-Clone the repo (or extract the folder), then install dependencies:
+### 1. Install Dependencies
+Clone the repository, navigate into the directory, and run:
 ```bash
 npm install
 ```
 
-### 2. Configure Database Credentials
-Open the `.env` file in the root directory and update it with your MySQL root password (and any other changes):
+### 2. Configure Credentials
+Open the `.env` file located in the root folder, and provide your MySQL root password (and adjust the user/host if different).
+
 ```env
 PORT=3000
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=your_mysql_password_here
+# Add your local mysql password below!
+DB_PASSWORD=your_mysql_password
 DB_NAME=chaintech_todo
 ```
 
 ### 3. Start the Server
-Run the project using `npm start` (or `npm run dev` for nodemon):
+Run the application using:
 ```bash
 npm start
 ```
-*Note: Upon startup, the API will automatically connect to MySQL and execute a `CREATE DATABASE IF NOT EXISTS` and `CREATE TABLE IF NOT EXISTS` statements.*
+*(You will see a log indicating the Database and Table were generated successfully. You do not need to do any manual setup in MySQL Workbench.)*
 
-### 4. Running Unit Tests
-You can run the full suite of unit tests directly:
+### 4. Use the Application (Web UI)
+Open your browser and navigate to:
+**[http://localhost:3000](http://localhost:3000)**
+
+The app serves a beautiful UI from the `/public` directory, allowing you to instantly begin interacting with the database.
+
+---
+
+## 🧪 Running the Unit Tests
+
+To run the automated test suite, simply use:
 ```bash
 npm test
 ```
+This triggers the Jest testing environment. You should immediately see all endpoints passing validation checks, database insertions, and edge cases.
 
-## API Endpoints Summary
+---
 
-- **POST `/tasks`**: Create a new task.
-  - Body: `{ "title": "Buy groceries", "description": "Milk and eggs", "category": "Personal", "dueDate": "2024-12-01" }`
-- **GET `/tasks`**: Retrieve all tasks, sorted by newest first.
-- **PUT `/tasks/:id`**: Update any fields (`title`, `description`, `dueDate`, `category`) of an existing task.
-- **PATCH `/tasks/:id/complete`**: Mark a task as completed. (Returns error if already completed).
-- **DELETE `/tasks/:id`**: Safely delete a task from the database.
+## 🌐 API Endpoint Reference
+
+For developers preferring REST tools (like Postman), the base URL is `http://localhost:3000/tasks`.
+
+| Method | Endpoint | Description | JSON Body example |
+|---|---|---|---|
+| **POST** | `/` | Create a new task | `{ "title": "Buy Milk", "description": "2% please", "category": "Shopping", "dueDate": "2024-12-01" }` |
+| **GET** | `/` | Retrieve all tasks | *(None)* |
+| **PUT** | `/:id` | Update a task's details | `{ "title": "Buy Soy Milk", "category": "Grocery" }` |
+| **PATCH**| `/:id/complete` | Mark task complete | *(None)* |
+| **DELETE**| `/:id` | Delete a specific task| *(None)* |
