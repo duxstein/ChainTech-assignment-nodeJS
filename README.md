@@ -116,7 +116,7 @@ To create a new task, follow these steps in the UI:
 4. Select a category for the task from the dropdown
 ![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/c0b5cbe1b22c4ec4c1bc656eda94560e9eb30cf3/screenshots/selecting-a-category.png)
 5. Click on the add task button
-![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/c0b5cbe1b22c4ec4c1bc656eda94560e9eb30cf3/screenshots/creating-a-task-title.png)
+![image alt](https://github.com/duxstein/ChainTech-assignment-nodeJS/blob/98004408a835dc3fb5573fbba806cbc47779517a/screenshots/add-button.png)
 
 ---
 
