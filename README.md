@@ -56,7 +56,11 @@ The project is structured using a modular approach to separate concerns and ensu
 ### Prerequisites
 - Node.js (v14 or higher)
 - **MySQL Server** installed and running locally.
+- Node.js (v14 or higher)
+- **MySQL Server** installed and running locally.
 
+### 1. Install Dependencies
+Clone the repository, navigate into the directory, and run:
 ### 1. Install Dependencies
 Clone the repository, navigate into the directory, and run:
 ```bash
@@ -66,10 +70,15 @@ npm install
 ### 2. Configure Credentials
 Open the `.env` file located in the root folder, and provide your MySQL root password (and adjust the user/host if different).
 
+### 2. Configure Credentials
+Open the `.env` file located in the root folder, and provide your MySQL root password (and adjust the user/host if different).
+
 ```env
 PORT=3000
 DB_HOST=localhost
 DB_USER=root
+# Add your local mysql password below!
+DB_PASSWORD=your_mysql_password
 # Add your local mysql password below!
 DB_PASSWORD=your_mysql_password
 DB_NAME=chaintech_todo
