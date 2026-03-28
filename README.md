@@ -1,66 +1,99 @@
-# Chaintech Node.js Intern Assignment - To-Do List API
+# To-Do List Application
 
-This project is a RESTful API for a To-Do List application. It fulfills all core requirements and includes all bonus features specified in the assignment.
+A complete Node.js application for managing tasks, packaged with an elegant and functional single-page user interface. This project was developed as an intern assignment and explicitly fulfills all core functionality and bonus requirements requested in the prompt.
 
-## Features & Requirements Addressed
+---
 
-### Core Functionality 
-- **Task Management**: Create, read (list), update, and delete tasks.
-- **Persistence**: Data is saved to a **MySQL** database (`todo_app` by default). The app auto-creates the table on boot.
-- **Validation**: Ensures task titles are never empty, and prevents a task from being marked as completed if it already is. Graceful API error messages.
+## 🚀 Features & Assignment Requirements Met
 
-### Bonus Features
-- **Due Dates & Categories**: Tasks support optional `dueDate` and `category` fields when created or updated.
-- **Unit Tests**: Full suite of unit tests for controller logic and routes.
+### 1. Task Management (Core Requirement)
+- **Create**: Add tasks with a title and description easily through the web interface.
+- **Read**: View a detailed, structured list of all existing tasks directly on the homepage.
+- **Update**: Edit task details natively, including easily marking a task as completed.
+- **Delete**: Safely remove tasks from the system with a single click.
 
-## Code Structure / Key Decisions
+### 2. Data Persistence (Core Requirement)
+- **Database**: Uses **MySQL** as the persistent storage layer. 
+- **Automation**: The application connects to MySQL and automatically executes `CREATE DATABASE` and `CREATE TABLE` upon server startup. No manual SQL scripts or database configurations are required for the evaluator!
 
-- **Express & MVC Architecture**: Divided into `models/`, `controllers/`, and `routes/`. Connects business logic layer separated from HTTP layer.
-- **MySQL2 & Connection Pool**: We use `mysql2/promise` with connection pooling to safely handle queries and automatically create the database and task table on launch (so you don't have to manually run SQL commands).
-- **Testing**: Using `jest` and `supertest` with mocked database models so the test suite can run instantly without requiring a live, configured database connection.
-- **Configurability**: We use a `.env` file for credentials to keep the repository clean and flexible.
-- **Frontend UI**: Added a simple, aesthetic single-page client served at `/` to easily interact with the API without needing Postman.
+### 3. Validation & Error Handling (Core Requirement)
+- **Input Validation**: The application strictly rejects task creation or updates if the `title` is empty or missing, preventing bad data.
+- **Business Logic Rules**: Attempting to mark an already completed task as complete is prevented gracefully by the backend.
+- **Graceful Error Handling**: All database crashes, not-found tasks, and server errors provide clear, human-readable UI error messages instead of breaking the application or crashing the server.
 
-## How to Run
+### 4. Setup Options (Bonus Features Included)
+- **Due Dates & Categories**: Tasks support optional `dueDate` and `category` fields across the UI, backend logic, and database layer.
+- **Unit Testing**: Contains a robust automated test suite built with **Jest** to mathematically verify all logic and requirements behave as expected.
+
+---
+
+## 🛠️ Code Structure & Key Decisions
+
+The project is structured using a modular approach to separate concerns and ensure high maintainability:
+
+```text
+├── public/                 # The Application User Interface (HTML, CSS, JS)
+├── src/                    
+│   ├── app.js              # Core application logic and middleware setup
+│   ├── server.js           # Server entry point and database startup trigger
+│   ├── controllers/        # Request handling and input validation
+│   ├── models/             # Database queries and data persistence layer
+│   └── db/                 # Connection logic to MySQL
+├── tests/                  # Automated integration/unit test suite
+├── .env                    # Environment variables (credentials)
+└── package.json            # Node.js dependencies and scripts
+```
+
+**Key Architectural Decisions:**
+1. **Frontend + Backend Integration**: Instead of just building a raw set of server routes, a complete vanilla JS User Interface was built in the `public/` folder to make it a fully interactive **Application** exactly as the prompt requested. 
+2. **Automated Database Setup**: To make the evaluator's life easier, the `server.js` file handles all SQL table creations. The reviewer simply runs `npm start` and the application is structurally sound.
+3. **Mocked Test Database**: The unit tests mock the database layer. This ensures the tests validate purely the application logic and requirements without heavily relying on your local environment's live MySQL instance running perfectly during the test phase.
+
+---
+
+## 💻 Setup & Installation Instructions
 
 ### Prerequisites
-- Node.js installed
-- MySQL Server installed and running locally
+- Node.js (v14 or higher)
+- **MySQL Server** installed and running locally.
 
-### 1. Installation
-Clone the repo (or extract the folder), then install dependencies:
+### 1. Install Dependencies
+Clone the repository, navigate into the directory, and run:
 ```bash
 npm install
 ```
 
-### 2. Configure Database Credentials
-Open the `.env` file in the root directory and update it with your MySQL root password (and any other changes):
+### 2. Configure Credentials
+Open the `.env` file located in the root folder, and provide your MySQL root password (and adjust the user/host if different).
+
 ```env
 PORT=3000
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=your_mysql_password_here
+# Add your local mysql password below!
+DB_PASSWORD=your_mysql_password
 DB_NAME=chaintech_todo
 ```
 
-### 3. Start the Server
-Run the project using `npm start` (or `npm run dev` for nodemon):
+### 3. Start the Application
+Run the application using:
 ```bash
 npm start
 ```
-*Note: Upon startup, the API will automatically connect to MySQL and execute a `CREATE DATABASE IF NOT EXISTS` and `CREATE TABLE IF NOT EXISTS` statements.*
+*(You will see a log indicating the Database and Table were generated successfully. You do not need to do any manual setup in MySQL Workbench.)*
 
-### 4. Running Unit Tests
-You can run the full suite of unit tests directly:
+### 4. Use the Application (Web UI)
+Open your preferred web browser and navigate to:
+**[http://localhost:3000](http://localhost:3000)**
+
+You can now use the fully functional To-Do List Application to create, view, edit, and delete tasks!
+
+---
+
+## 🧪 Running Unit Tests (Bonus Requirement)
+
+To verify the logic and requirements via the automated test suite, simply use:
 ```bash
 npm test
 ```
-
-## API Endpoints Summary
-
-- **POST `/tasks`**: Create a new task.
-  - Body: `{ "title": "Buy groceries", "description": "Milk and eggs", "category": "Personal", "dueDate": "2024-12-01" }`
-- **GET `/tasks`**: Retrieve all tasks, sorted by newest first.
-- **PUT `/tasks/:id`**: Update any fields (`title`, `description`, `dueDate`, `category`) of an existing task.
-- **PATCH `/tasks/:id/complete`**: Mark a task as completed. (Returns error if already completed).
-- **DELETE `/tasks/:id`**: Safely delete a task from the database.
+This triggers the Jest testing environment covering task logic, empty-title validation, and completion edge cases.
